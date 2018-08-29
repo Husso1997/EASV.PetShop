@@ -8,13 +8,19 @@ namespace Easv.PetShop.Core.Entities
     {
         Dog,
         Cat,
-        Goat
+        Goat,
+        Unknown
     }
 
     public class Pet
     {
+        MyEnum PetEnum;
+
         public int PetID { get; set; }
         public string PetName { get; set; }
+        
+
+
         public MyEnum PetType { get; set; }
         public DateTime PetBirthDate { get; set; }
         public DateTime SoldDate { get; set; }

@@ -8,25 +8,36 @@ namespace Easv.PetShop.Infrastructure.Static.Data
 {
     public class PetRepository : IPetRepository
     {
+        private FakeDB fakeDB;
+
+        public PetRepository()
+        {
+            fakeDB = new FakeDB();
+        }
         
         public void CreatePet(Pet pet)
         {
-            throw new NotImplementedException();
+            fakeDB.CreatePet(pet);
         }
 
         public void DeletePet(int petId)
         {
-            throw new NotImplementedException();
+            fakeDB.DeletePet(petId);
         }
 
         public IEnumerable<Pet> GetAllPets()
         {
-            throw new NotImplementedException();
+            return fakeDB.GetAllPets();
+        }
+
+        public Pet GetPetByID(int petId)
+        {
+            return fakeDB.GetPetById(petId);
         }
 
         public void UpdatePet(Pet pet)
         {
-            throw new NotImplementedException();
+            fakeDB.UpdatePet(pet);
         }
     }
 }

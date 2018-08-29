@@ -15,6 +15,8 @@ namespace Easv.PetShop.Application.Services.DomainService
 
         void UpdatePet(Pet pet);
 
+        Pet GetPetByID(int petId);
+
 
     }
 }
