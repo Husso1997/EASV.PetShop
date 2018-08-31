@@ -8,8 +8,8 @@ namespace Easv.PetShop.Infrastructure.Static.Data
 {
     internal class FakeDB
     {
-        private int petId;
-        private IEnumerable<Pet> petList;
+        internal static int petId;
+        internal static IEnumerable<Pet> petList;
 
         internal FakeDB()
         {
@@ -18,54 +18,11 @@ namespace Easv.PetShop.Infrastructure.Static.Data
             RandomPets();
         }
 
-        public void CreatePet(Pet pet)
-        {
-            pet.PetID = petId++;
-            var petList = this.petList.ToList();
-            petList.Add(pet);
-            this.petList = petList;
-        }
-
-        public void DeletePet(int id)
-        {
-            Pet pet = GetPetById(id);
-
-            var petList = this.petList.ToList();
-            petList.Remove(pet);
-            this.petList = petList;
-        }
-
-        public IEnumerable<Pet> GetAllPets()
-        {
-            return petList;
-        }
-
-        public void UpdatePet(Pet pet)
-        {
-            Pet PetToUpdate = GetPetById(pet.PetID);
-            PetToUpdate.PetName = pet.PetName;
-            PetToUpdate.PetPreviousOwner = pet.PetPreviousOwner;
-            PetToUpdate.PetPrice = pet.PetPrice;
-            PetToUpdate.SoldDate = pet.SoldDate;
-        }
-
-        public Pet GetPetById(int id)
-        {
-            foreach(var pet in petList.ToList())
-            {
-                if(pet.PetID == id)
-                {
-                    return pet;
-                }
-            }
-            return null;
-        }
-
-        public void RandomPets()
+        internal void RandomPets()
         {
             Random random = new Random();
             string[] randomNames = {"Peter", "James", "Arnold", "Muscle", "NoNameDog"};
-            var petList = this.petList.ToList();
+            var petList = FakeDB.petList.ToList();
 
             for (int i = 0;i<10;i++)
             {
@@ -77,14 +34,14 @@ namespace Easv.PetShop.Infrastructure.Static.Data
                     PetPrice = random.NextDouble(),
                     PetPreviousOwner = "None",
                     PetBirthDate = new DateTime(1995, 2, 20),
-                    SoldDate = new DateTime(1997, 4, 20),
+                    SoldDate = DateTime.Today,
                 };
                 petList.Add(pet);
             }
-            this.petList = petList;
+            FakeDB.petList = petList;
         }
 
-        public MyEnum GetEnumType(int index)
+        internal MyEnum GetEnumType(int index)
         {
             switch(index)
             {

@@ -9,7 +9,7 @@ namespace Easv.PetShop.Core.Application.Services.ApplicationService
     {
         IEnumerable<Pet> GetAllPets();
 
-        void DeletePet(int petId);
+        bool DeletePet(int petId);
 
         void CreatePet(Pet pet);
 
@@ -18,6 +18,7 @@ namespace Easv.PetShop.Core.Application.Services.ApplicationService
         Pet GetPetByID(int petId);
 
         List<Pet> GetAllPetByType(MyEnum enumType);
+        List<Pet> GetPetsSortedPrice();
         List<Pet> GetFiveCheapestPets();
     }
 }

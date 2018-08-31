@@ -17,18 +17,32 @@ namespace Easv.PetShop.Core.Application.Services.ApplicationService.Services
             this.petRepository = petRepository;
 
         }
-        
+
         public List<Pet> GetAllPetByType(MyEnum enumType)
         {
             List<Pet> petSpecificType = GetAllPets().Where(pet => pet.PetType == enumType).ToList();
-            
+            return petSpecificType;
+        }
+
+        public List<Pet> GetPetsSortedPrice()
+        {
+            List<Pet> petSpecificType = GetAllPets().OrderBy(pet => pet.PetPrice).ToList();
             return petSpecificType;
         }
 
         public List<Pet> GetFiveCheapestPets()
         {
-            List<Pet> petSpecificType = GetAllPets().OrderBy(pet => pet.PetPrice).ToList();
-            return petSpecificType.Take(5).ToList();
+            int numberOfPets = 0;
+            if(GetAllPets().ToList().Count >= 5)
+            {
+                numberOfPets = 5;
+            }
+            else
+            {
+                numberOfPets = GetAllPets().Count();
+            }
+            List<Pet> FiveCheapestPets = GetPetsSortedPrice().Take(numberOfPets).ToList();
+            return FiveCheapestPets;
         }
 
         public void CreatePet(Pet pet)
@@ -36,9 +50,9 @@ namespace Easv.PetShop.Core.Application.Services.ApplicationService.Services
             petRepository.CreatePet(pet);
         }
 
-        public void DeletePet(int petId)
+        public bool DeletePet(int petId)
         {
-            petRepository.DeletePet(petId);
+            return petRepository.DeletePet(petId);
         }
 
         public IEnumerable<Pet> GetAllPets()

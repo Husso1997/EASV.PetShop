@@ -9,7 +9,7 @@ namespace Easv.PetShop.Application.Services.DomainService
     {
         IEnumerable<Pet> GetAllPets();
 
-        void DeletePet(int petId);
+        bool DeletePet(int petId);
 
         void CreatePet(Pet pet);
 
