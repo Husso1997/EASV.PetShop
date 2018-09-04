@@ -12,10 +12,10 @@ namespace EASV.PetShop
         static void Main(string[] args)
         {
 
-            var services = new ServiceCollection();
-            services.AddScoped<IPetRepository, PetRepository>();
-            services.AddScoped<IPetService, PetService>();
-            var serviceProvider = services.BuildServiceProvider();
+            var serviceCollection = new ServiceCollection();
+            serviceCollection.AddScoped<IPetRepository, PetRepository>();
+            serviceCollection.AddScoped<IPetService, PetService>();
+            var serviceProvider = serviceCollection.BuildServiceProvider();
 
             var petService = serviceProvider.GetService<IPetService>();
 
